@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="homepage">
+        <h1>Bienvenido a la SENA APP</h1>
+        <p class="slogan">Gestión de aprendices - ADSO</p>
+        <div class="cta">
+            <a href="{% url 'aprendices:lista_aprendices' %}">Ver lista de aprendices</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tennis Club</title>
+    <style>
+        :root {
+            --bg-color: #1e1e1e;
+            --text-color: #f0f0f0;
+            --primary-color: #3a7bd5;
+            --header-footer-bg: #2c2c2c;
+            --accent-color: #4aa3ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--header-footer-bg);
+            padding: 1rem 2rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        footer {
+            background-color: var(--header-footer-bg);
+            padding: 1rem 2rem;
+            text-align: center;
+            border-top: 1px solid #444;
+            color: #ccc;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #8bbef7; 
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            color: #ddd;
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent-color);
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .block {
+            background-color: #2a2a2a;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .member-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .member-list li {
+            background-color: #2a2a2a;
+            margin-bottom: 0.5rem;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            transition: background 0.3s;
+        }
+
+        .member-list li:hover {
+            background-color: #333;
+        }
+
+        .member-list a {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: #f0f0f0;
+            text-decoration: none;
+        }
+
+        .member-list .col {
+            min-width: 120px;
+            flex: 1;
+        }
+
+        .member-list .name {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .member-list .email,
+        .member-list .phone,
+        .member-list .birth {
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+
+        .member-detail {
+            background-color: #2a2a2a;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .member-detail h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+        }
+
+        .detail-group p {
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+            color: #ddd;
+        }
+
+        .detail-group strong {
+            color: #8bbef7;
+            font-weight: 500;
+        }
+
+        .back-link {
+            margin-top: 1.5rem;
+            text-align: right;
+        }
+
+        .back-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            margin-left: 1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #3a7bd530; /* azul neutro con opacidad */
+        }
+
+        .homepage {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .homepage h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .home-image {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+            margin-bottom: 1rem;
+        }
+
+        .slogan {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .cta a {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .cta a:hover {
+            background-color: #336dc0;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1>SENA</h1>
+            <nav>
+                <a href="{% url 'aprendices:inicio' %}">Inicio</a>
+                <a href="{% url 'aprendices:lista_aprendices' %}">Aprendices</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 SENA APP. Programado por Andres P.</p>
+    </footer>
+</body>
+</html>

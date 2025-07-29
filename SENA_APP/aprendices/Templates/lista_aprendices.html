@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Lista de Aprendices</h1>
+    <ul class="member-list">
+        {% for aprendiz in aprendices %}
+        <li>
+            <div class="col name">{{ aprendiz.nombre }} {{ aprendiz.apellido }}</div>
+            <div class="col email">{{ aprendiz.correo }}</div>
+            <div class="col phone">{{ aprendiz.telefono }}</div>
+            <div class="col birth">{{ aprendiz.Fecha_nacimiento }}</div>
+            <div class="col">{{ aprendiz.ciudad }}</div>
+            <div class="col">{{ aprendiz.programa }}</div>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
