@@ -10,6 +10,7 @@ class Aprendiz(models.Model):
   ciudad = models.CharField(max_length=255)
   programa = models.CharField(max_length=255)
   
+  
   def __str__(self):
     return f"{self.nombre} {self.apellido} - {self.documento_identidad}"
 # Create your models here.

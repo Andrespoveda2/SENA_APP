@@ -11,6 +11,10 @@
             <div class="col birth">{{ aprendiz.Fecha_nacimiento }}</div>
             <div class="col">{{ aprendiz.ciudad }}</div>
             <div class="col">{{ aprendiz.programa }}</div>
+
+            <a href="{% url 'admin:aprendices_aprendiz_change' aprendiz.pk %}" class="btn btn-sm btn-outline-primary">
+                Editar
+            </a>
         </li>
         {% endfor %}
     </ul>

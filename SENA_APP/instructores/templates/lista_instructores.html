@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Instructores SENA - SENA APP{% endblock %}
+
+{% block content %}
+<h2>Lista de Instructores SENA</h2>
+<div>
+    <span>Total: {{ total_instructores }} Instructores</span>
+    <a href="{% url 'admin:instructores_instructor_add' %}">Nuevo Instructor</a>
+</div>
+
+{% if lista_instructores %}
+    <table>
+        <thead>
+            <tr>
+                <th>Documento</th>
+                <th>Tipo Documento</th>
+                <th>Nombre Completo</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Ciudad</th>
+                <th>Dirección</th>
+                <th>Nivel Educativo</th>
+                <th>Fecha Nacimiento</th>
+                <th>Especialidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for instructor in lista_instructores %}
+            <tr>
+                <td><strong>{{ instructor.documento_identidad }}</strong></td>
+                <td>{{ instructor.tipo_documento }}</td>
+                <td>{{ instructor.nombre_completo }}</td>
+                <td><a href="mailto:{{ instructor.correo }}">{{ instructor.correo }}</a></td>
+                <td>{{ instructor.telefono }}</td>
+                <td>{{ instructor.ciudad }}</td>
+                <td>{{ instructor.direccion }}</td>
+                <td>{{ instructor.nivel_educativo }}</td>
+                <td>{{ instructor.fecha_nacimiento|date:"d/m/Y" }}</td>
+                <td>{{ instructor.especialidad }}</td>
+                <td>
+                    <a href="{% url 'admin:instructores_instructor_change' instructor.pk %}">Editar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <h4 class="alert-heading">No hay Instructores registrados</h4>
+    <p>Aún no se han registrado Instructores en el sistema.</p>
+    <hr>
+    <p>
+        <a href="{% url 'admin:instructores_instructor_add' %}">Registrar Primer Instructor</a>
+    </p>
+{% endif %}
+{% endblock %}

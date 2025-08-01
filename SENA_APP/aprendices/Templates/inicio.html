@@ -1,11 +1,32 @@
 {% extends 'base.html' %}
 
+{% block title %}Inicio - SENA APP{% endblock %}
+
 {% block content %}
-    <div class="homepage">
-        <h1>Bienvenido a la SENA APP</h1>
-        <p class="slogan">Gestión de aprendices - ADSO</p>
-        <div class="cta">
-            <a href="{% url 'aprendices:lista_aprendices' %}">Ver lista de aprendices</a>
-        </div>
+<div>
+    <h1>Bienvenido a SENA APP</h1>
+    <p>Sistema de Gestión de Aprendices, Instructores y Programas del Servicio Nacional de Aprendizaje</p>
+</div>
+
+<div>
+    <div>
+        <h5>Lista de Aprendices</h5>
+        <p>Consulta todos los aprendices registrados en el sistema.</p>
+        <a href="{% url 'aprendices:lista_aprendices' %}" class="btn">Ver Lista</a>
     </div>
+
+    <div>
+        <h5>Lista de Instructores</h5>
+        <p>Consulta todos los instructores registrados en el sistema.</p>
+        <a href="{% url 'instructores:lista_instructores' %}" class="btn">Ver Lista</a>
+    </div>
+
+    <div>
+        <h5>Lista de Programas</h5>
+        <p>Consulta todos los programas registrados en el sistema</p>
+        <a href="{% url 'programas:lista_programas' %}" class="btn">Ver Lista</a>
+    </div>
+</div>
 {% endblock %}
+
+
