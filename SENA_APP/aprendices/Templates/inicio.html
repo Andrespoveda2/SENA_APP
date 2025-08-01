@@ -3,30 +3,26 @@
 {% block title %}Inicio - SENA APP{% endblock %}
 
 {% block content %}
-<div>
+<div class="homepage">
     <h1>Bienvenido a SENA APP</h1>
-    <p>Sistema de Gestión de Aprendices, Instructores y Programas del Servicio Nacional de Aprendizaje</p>
+    <p class="slogan">Sistema de Gestión de Aprendices, Instructores y Programas del SENA</p>
 </div>
 
-<div>
-    <div>
+<div class="member-list">
+    <div class="member-list-item">
         <h5>Lista de Aprendices</h5>
         <p>Consulta todos los aprendices registrados en el sistema.</p>
         <a href="{% url 'aprendices:lista_aprendices' %}" class="btn">Ver Lista</a>
     </div>
-
-    <div>
+    <div class="member-list-item">
         <h5>Lista de Instructores</h5>
         <p>Consulta todos los instructores registrados en el sistema.</p>
         <a href="{% url 'instructores:lista_instructores' %}" class="btn">Ver Lista</a>
     </div>
-
-    <div>
+    <div class="member-list-item">
         <h5>Lista de Programas</h5>
-        <p>Consulta todos los programas registrados en el sistema</p>
+        <p>Consulta todos los programas registrados en el sistema.</p>
         <a href="{% url 'programas:lista_programas' %}" class="btn">Ver Lista</a>
     </div>
 </div>
 {% endblock %}
-
-

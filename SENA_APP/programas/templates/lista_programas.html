@@ -3,10 +3,10 @@
 {% block title %}Lista de Programas SENA - SENA APP{% endblock %}
 
 {% block content %}
-<h2>Lista de Programas que el SENA ofrece</h2>
-<div>
+<h1>Lista de Programas que el SENA ofrece</h1>
+<div class="section-header">
     <span>Total: {{ total_programas }} Programas</span>
-    <a href="{% url 'admin:programas_programa_add' %}">Nuevo Programa</a>
+    <a href="{% url 'admin:programas_programa_add' %}" class="btn">Nuevo Programa</a>
 </div>
 
 {% if lista_programas %}
@@ -36,7 +36,7 @@
                 <td>{{ programa.centro_formacion }}</td>
                 <td>{{ programa.regional }}</td>
                 <td>
-                    <a href="{% url 'admin:programas_programa_change' programa.pk %}">Editar</a>
+                    <a href="{% url 'admin:programas_programa_change' programa.pk %}" class="btn">Editar</a>
                 </td>
             </tr>
             {% endfor %}
@@ -45,9 +45,6 @@
 {% else %}
     <h4>No hay Programas registrados</h4>
     <p>Aún no se han registrado Programas en el sistema.</p>
-    <hr>
-    <p>
-        <a href="{% url 'admin:programas_programa_add' %}">Registrar Primer Programa</a>
-    </p>
+    <a href="{% url 'admin:programas_programa_add' %}" class="btn">Registrar Primer Programa</a>
 {% endif %}
 {% endblock %}

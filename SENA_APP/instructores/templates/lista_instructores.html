@@ -3,10 +3,10 @@
 {% block title %}Lista de Instructores SENA - SENA APP{% endblock %}
 
 {% block content %}
-<h2>Lista de Instructores SENA</h2>
-<div>
+<h1>Lista de Instructores SENA</h1>
+<div class="section-header">
     <span>Total: {{ total_instructores }} Instructores</span>
-    <a href="{% url 'admin:instructores_instructor_add' %}">Nuevo Instructor</a>
+    <a href="{% url 'admin:instructores_instructor_add' %}" class="btn">Nuevo Instructor</a>
 </div>
 
 {% if lista_instructores %}
@@ -40,18 +40,15 @@
                 <td>{{ instructor.fecha_nacimiento|date:"d/m/Y" }}</td>
                 <td>{{ instructor.especialidad }}</td>
                 <td>
-                    <a href="{% url 'admin:instructores_instructor_change' instructor.pk %}">Editar</a>
+                    <a href="{% url 'admin:instructores_instructor_change' instructor.pk %}" class="btn">Editar</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 {% else %}
-    <h4 class="alert-heading">No hay Instructores registrados</h4>
+    <h4>No hay Instructores registrados</h4>
     <p>Aún no se han registrado Instructores en el sistema.</p>
-    <hr>
-    <p>
-        <a href="{% url 'admin:instructores_instructor_add' %}">Registrar Primer Instructor</a>
-    </p>
+    <a href="{% url 'admin:instructores_instructor_add' %}" class="btn">Registrar Primer Instructor</a>
 {% endif %}
 {% endblock %}
