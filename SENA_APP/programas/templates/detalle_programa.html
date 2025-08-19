@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles Programa - SENA APP{% endblock %}
+    
+{% block content %}
+    <h1>{{ programa.nombre }}</h1>
+    <div class="section-header">
+        <a href="{% url 'programas:lista_programas' %}" class="btn">Volver a la lista</a>
+    </div>
+
+    <div class="info-section">
+        <p><strong>Código:</strong> {{ programa.codigo }}</p>
+        <p><strong>Nivel de Formación:</strong> {{ programa.get_nivel_formacion_display }}</p>
+        <p><strong>Modalidad:</strong> {{ programa.get_modalidad_display }}</p>
+        <p><strong>Duración:</strong> {{ programa.duracion_meses }} meses ({{ programa.duracion_horas }} horas)</p>
+        <p><strong>Centro:</strong> {{ programa.centro_formacion }}</p>
+        <p><strong>Regional:</strong> {{ programa.regional }}</p>
+        {% if programa.descripcion %}
+            <p><strong>Descripción:</strong> {{ programa.descripcion }}</p>
+        {% endif %}
+        {% if programa.competencias %}
+            <p><strong>Competencias:</strong> {{ programa.competencias }}</p>
+        {% endif %}
+        {% if programa.perfil_egreso %}
+            <p><strong>Perfil de Egreso:</strong> {{ programa.perfil_egreso }}</p>
+        {% endif %}
+        {% if programa.requisitos_ingreso %}
+            <p><strong>Requisitos de Ingreso:</strong> {{ programa.requisitos_ingreso }}</p>
+        {% endif %}
+    </div>
+
+    ---
+
+    <h2>Cursos del Programa ({{ cursos|length }})</h2>
+    {% if cursos %}
+        <ul class="course-list">
+            {% for curso in cursos %}
+            <li>
+                <a href="{% url 'aprendices:detalle_curso' curso.id %}">
+                    <strong>{{ curso.nombre }}</strong><br>
+                    <small>Código: {{ curso.codigo }}</small>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Este programa aún no tiene cursos asociados.</p>
+    {% endif %}
+{% endblock %}

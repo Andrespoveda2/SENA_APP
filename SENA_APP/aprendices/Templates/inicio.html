@@ -12,17 +12,27 @@
     <div class="member-list-item">
         <h5>Lista de Aprendices</h5>
         <p>Consulta todos los aprendices registrados en el sistema.</p>
+        <p>Total de Aprendices: {{ total_aprendices}}</p>
         <a href="{% url 'aprendices:lista_aprendices' %}" class="btn">Ver Lista</a>
     </div>
     <div class="member-list-item">
         <h5>Lista de Instructores</h5>
         <p>Consulta todos los instructores registrados en el sistema.</p>
+        <p>Total de Instructores: {{ total_instructores}}</p>
         <a href="{% url 'instructores:lista_instructores' %}" class="btn">Ver Lista</a>
     </div>
     <div class="member-list-item">
         <h5>Lista de Programas</h5>
         <p>Consulta todos los programas registrados en el sistema.</p>
+        <p>Total de Programas: {{ total_programas}}</p>
         <a href="{% url 'programas:lista_programas' %}" class="btn">Ver Lista</a>
+    </div>
+    <div class="member-list-item">
+        <h5>Lista de Cursos</h5>
+        <p>Consulta todos los Cursos registrados en el sistema</p>
+        <p>Total de Cursos: {{ total_cursos}}</p>
+        <p>Cursos Activos: {{ cursos_activos}}</p>
+        <a href="{% url 'aprendices:lista_cursos' %}" class="btn">Ver Lista</a>
     </div>
 </div>
 {% endblock %}

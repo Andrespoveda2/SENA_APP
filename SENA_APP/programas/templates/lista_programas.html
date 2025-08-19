@@ -3,48 +3,51 @@
 {% block title %}Lista de Programas SENA - SENA APP{% endblock %}
 
 {% block content %}
-<h1>Lista de Programas que el SENA ofrece</h1>
-<div class="section-header">
-    <span>Total: {{ total_programas }} Programas</span>
-    <a href="{% url 'admin:programas_programa_add' %}" class="btn">Nuevo Programa</a>
-</div>
+    <h1>Lista de Programas que el SENA ofrece</h1>
+    <div class="section-header">
+        <span>Total: {{ total_programas }} Programas</span>
+        {# CAMBIO CLAVE: El botón ahora apunta a tu formulario web personalizado #}
+        <a href="{% url 'programas:agregar_programa' %}" class="btn">Nuevo Programa</a>
+    </div>
 
-{% if lista_programas %}
-    <table>
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Nombre</th>
-                <th>Nivel Formación</th>
-                <th>Modalidad</th>
-                <th>Meses</th>
-                <th>Descripción</th>
-                <th>Centro Formación</th>
-                <th>Regional</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for programa in lista_programas %}
-            <tr>
-                <td><strong>{{ programa.codigo }}</strong></td>
-                <td>{{ programa.nombre }}</td>
-                <td>{{ programa.nivel_formacion }}</td>
-                <td>{{ programa.modalidad }}</td>
-                <td>{{ programa.duracion_meses }}</td>
-                <td>{{ programa.descripcion }}</td>
-                <td>{{ programa.centro_formacion }}</td>
-                <td>{{ programa.regional }}</td>
-                <td>
-                    <a href="{% url 'admin:programas_programa_change' programa.pk %}" class="btn">Editar</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <h4>No hay Programas registrados</h4>
-    <p>Aún no se han registrado Programas en el sistema.</p>
-    <a href="{% url 'admin:programas_programa_add' %}" class="btn">Registrar Primer Programa</a>
-{% endif %}
+    {% if lista_programas %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Nivel Formación</th>
+                    <th>Modalidad</th>
+                    <th>Meses</th>
+                    <th>Descripción</th>
+                    <th>Centro Formación</th>
+                    <th>Regional</th>
+                    <th>Estado</th> {# Añadido estado a la tabla #}
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for programa in lista_programas %}
+                <tr>
+                    <td><strong><a href="{% url 'programas:detalle_programa' programa.id %}">{{ programa.codigo }}</a></strong></td>
+                    <td>{{ programa.nombre }}</td>
+                    <td>{{ programa.get_nivel_formacion_display }}</td> {# Mostrar texto completo #}
+                    <td>{{ programa.get_modalidad_display }}</td> {# Mostrar texto completo #}
+                    <td>{{ programa.duracion_meses }}</td>
+                    <td>{{ programa.descripcion|truncatechars:70 }}</td> {# Trunca la descripción para no alargar la tabla #}
+                    <td>{{ programa.centro_formacion }}</td>
+                    <td>{{ programa.regional }}</td>
+                    <td>{{ programa.get_estado_display }}</td> {# Mostrar texto completo #}
+                    <td>
+                        <a href="{% url 'admin:programas_programa_change' programa.pk %}" class="btn">Editar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h4>No hay Programas registrados</h4>
+        <p>Aún no se han registrado Programas en el sistema.</p>
+        <a href="{% url 'programas:agregar_programa' %}" class="btn">Registrar Primer Programa</a>
+    {% endif %}
 {% endblock %}

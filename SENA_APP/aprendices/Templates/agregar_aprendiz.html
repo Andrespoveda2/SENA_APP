@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Aprendiz - SENA APP{% endblock %}
+
+{% block content %}
+    <h1>Agregar Nuevo Aprendiz</h1>
+    <div class="section-header">
+        <a href="{% url 'aprendices:lista_aprendices' %}" class="btn">Cancelar</a>
+    </div>
+
+    <div class="form-container"> {# Un contenedor simple para el formulario #}
+        <form method="post" novalidate>
+            {% csrf_token %}
+            
+            <div class="form-field-group"> {# Agrupador para campos, para tu diseño #}
+                <div class="form-field">
+                    <label for="{{ form.documento_identidad.id_for_label }}">Documento de Identidad <span class="required-star">*</span></label>
+                    {{ form.documento_identidad }}
+                    {% if form.documento_identidad.errors %}
+                        <ul class="errorlist">{% for error in form.documento_identidad.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+                
+                <div class="form-field">
+                    <label for="{{ form.nombre.id_for_label }}">Nombre <span class="required-star">*</span></label>
+                    {{ form.nombre }}
+                    {% if form.nombre.errors %}
+                        <ul class="errorlist">{% for error in form.nombre.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="{{ form.apellido.id_for_label }}">Apellido <span class="required-star">*</span></label>
+                    {{ form.apellido }}
+                    {% if form.apellido.errors %}
+                        <ul class="errorlist">{% for error in form.apellido.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+                
+                <div class="form-field">
+                    <label for="{{ form.telefono.id_for_label }}">Teléfono</label>
+                    {{ form.telefono }}
+                    {% if form.telefono.errors %}
+                        <ul class="errorlist">{% for error in form.telefono.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="{{ form.correo.id_for_label }}">Correo Electrónico</label>
+                    {{ form.correo }}
+                    {% if form.correo.errors %}
+                        <ul class="errorlist">{% for error in form.correo.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+                
+                <div class="form-field">
+                    <label for="{{ form.fecha_nacimiento.id_for_label }}">Fecha de Nacimiento <span class="required-star">*</span></label>
+                    {{ form.fecha_nacimiento }}
+                    {% if form.fecha_nacimiento.errors %}
+                        <ul class="errorlist">{% for error in form.fecha_nacimiento.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-field-group">
+                <div class="form-field full-width"> {# Clase para ocupar todo el ancho si lo necesitas en tu CSS #}
+                    <label for="{{ form.ciudad.id_for_label }}">Ciudad</label>
+                    {{ form.ciudad }}
+                    {% if form.ciudad.errors %}
+                        <ul class="errorlist">{% for error in form.ciudad.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-field-group">
+                <div class="form-field full-width">
+                    <label for="{{ form.programa.id_for_label }}">Programa</label>
+                    {{ form.programa }}
+                    {% if form.programa.errors %}
+                        <ul class="errorlist">{% for error in form.programa.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            {# Errores no relacionados con campos específicos (ej. validaciones en clean()) #}
+            {% if form.non_field_errors %}
+                <ul class="errorlist">{% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+
+            <div class="form-actions"> {# Botones de acción #}
+                <button type="submit" class="btn primary-btn">Guardar Aprendiz</button>
+                <a href="{% url 'aprendices:lista_aprendices' %}" class="btn secondary-btn">Cancelar</a>
+            </div>
+        </form>
+    </div>
+    
+    <p class="form-info-text">
+        Los campos marcados con <span class="required-star">*</span> son obligatorios.
+    </p>
+{% endblock %}

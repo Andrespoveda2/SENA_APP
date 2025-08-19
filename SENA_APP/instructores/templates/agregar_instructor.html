@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Instructor - SENA APP{% endblock %}
+
+{% block content %}
+    <h1>Agregar Nuevo Instructor</h1>
+    <div class="section-header">
+        <a href="{% url 'instructores:lista_instructores' %}" class="btn">Cancelar</a>
+    </div>
+
+    <div class="form-container">
+        <form method="post" novalidate>
+            {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+                <ul class="errorlist">
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="{{ form.tipo_documento.id_for_label }}">{{ form.tipo_documento.label }} <span class="required-star">*</span></label>
+                    {{ form.tipo_documento }}
+                    {% if form.tipo_documento.errors %}
+                        <ul class="errorlist">{% for error in form.tipo_documento.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.documento_identidad.id_for_label }}">{{ form.documento_identidad.label }} <span class="required-star">*</span></label>
+                    {{ form.documento_identidad }}
+                    {% if form.documento_identidad.errors %}
+                        <ul class="errorlist">{% for error in form.documento_identidad.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="{{ form.nombre.id_for_label }}">{{ form.nombre.label }} <span class="required-star">*</span></label>
+                    {{ form.nombre }}
+                    {% if form.nombre.errors %}
+                        <ul class="errorlist">{% for error in form.nombre.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.apellido.id_for_label }}">{{ form.apellido.label }} <span class="required-star">*</span></label>
+                    {{ form.apellido }}
+                    {% if form.apellido.errors %}
+                        <ul class="errorlist">{% for error in form.apellido.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="{{ form.telefono.id_for_label }}">{{ form.telefono.label }}</label>
+                    {{ form.telefono }}
+                    {% if form.telefono.errors %}
+                        <ul class="errorlist">{% for error in form.telefono.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.correo.id_for_label }}">{{ form.correo.label }}</label>
+                    {{ form.correo }}
+                    {% if form.correo.errors %}
+                        <ul class="errorlist">{% for error in form.correo.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="{{ form.fecha_nacimiento.id_for_label }}">{{ form.fecha_nacimiento.label }} <span class="required-star">*</span></label>
+                    {{ form.fecha_nacimiento }}
+                    {% if form.fecha_nacimiento.errors %}
+                        <ul class="errorlist">{% for error in form.fecha_nacimiento.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.ciudad.id_for_label }}">{{ form.ciudad.label }}</label>
+                    {{ form.ciudad }}
+                    {% if form.ciudad.errors %}
+                        <ul class="errorlist">{% for error in form.ciudad.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="{{ form.direccion.id_for_label }}">{{ form.direccion.label }}</label>
+                    {{ form.direccion }}
+                    {% if form.direccion.errors %}
+                        <ul class="errorlist">{% for error in form.direccion.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.nivel_educativo.id_for_label }}">{{ form.nivel_educativo.label }}</label>
+                    {{ form.nivel_educativo }}
+                    {% if form.nivel_educativo.errors %}
+                        <ul class="errorlist">{% for error in form.nivel_educativo.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="{{ form.especialidad.id_for_label }}">{{ form.especialidad.label }} <span class="required-star">*</span></label>
+                    {{ form.especialidad }}
+                    {% if form.especialidad.errors %}
+                        <ul class="errorlist">{% for error in form.especialidad.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.anios_experiencia.id_for_label }}">{{ form.anios_experiencia.label }} <span class="required-star">*</span></label>
+                    {{ form.anios_experiencia }}
+                    {% if form.anios_experiencia.errors %}
+                        <ul class="errorlist">{% for error in form.anios_experiencia.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="{{ form.fecha_vinculacion.id_for_label }}">{{ form.fecha_vinculacion.label }} <span class="required-star">*</span></label>
+                    {{ form.fecha_vinculacion }}
+                    {% if form.fecha_vinculacion.errors %}
+                        <ul class="errorlist">{% for error in form.fecha_vinculacion.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.activo.id_for_label }}">{{ form.activo.label }} <span class="required-star">*</span></label>
+                    {{ form.activo }}
+                    {% if form.activo.errors %}
+                        <ul class="errorlist">{% for error in form.activo.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn primary-btn">Guardar Instructor</button>
+                <a href="{% url 'instructores:lista_instructores' %}" class="btn secondary-btn">Cancelar</a>
+            </div>
+        </form>
+    </div>
+    
+    <p class="form-info-text">
+        Los campos marcados con <span class="required-star">*</span> son obligatorios.
+    </p>
+{% endblock %}

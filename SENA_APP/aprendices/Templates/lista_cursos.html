@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Cursos SENA - SENA APP{% endblock %}
+
+{% block content %}
+<h1>Lista de Cursos SENA</h1>
+<div class="section-header">
+    <span>Total: {{ total_cursos }} Cursos</span>
+    <a href="{% url 'admin:aprendices_curso_add' %}" class="btn">Nuevo Curso</a>
+</div>
+
+{% if lista_cursos %}
+<table>
+    <thead>
+        <tr>
+            <th>Codigo Curso</th>
+            <th>Nombre Curso</th>
+            <th>Programa de Formacion</th>
+            <th>Instructor</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Finalizacion</th>
+            <th>Horario</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for curso in lista_cursos %}
+        <tr>
+            <td><strong><a href="{% url 'aprendices:detalle_curso' curso.id %}">{{ curso.codigo }}</a></strong></td>
+            <td>{{ curso.nombre }}</td>
+            <td>{{ curso.programa }}</td>
+            <td>{{ curso.instructor_coordinador }}</td>
+            <td>{{ curso.fecha_inicio|date:"d/m/Y" }}</td>
+            <td>{{ curso.fecha_fin|date:"d/m/Y" }}</td>
+            <td>{{ curso.horario }}</td>
+            <td>{{ curso.estado }}</td>
+            <td>
+                <a href="{% url 'admin:aprendices_curso_change' curso.pk %}" class="btn">Editar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h4>No hay Cursos registrados</h4>
+<p>Aún no se han registrado Cursos en el sistema.</p>
+<a href="{% url 'admin:aprendices_curso_add' %}" class="btn">Registrar Primer Curso</a>
+{% endif %}
+{% endblock %}

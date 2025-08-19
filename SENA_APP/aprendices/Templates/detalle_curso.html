@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle Curso - SENA APP{% endblock %}
+
+{% block content %}
+<h1>Detalles del Curso: {{ curso.nombre }}</h1>
+<div class="section-header">
+    <a href="{% url 'aprendices:lista_cursos' %}" class="btn">Volver a la lista</a>
+</div>
+
+<div class="member-list">
+    <div class="member-list-item">
+        <h5>Información del Curso</h5>
+        <p><strong>Código:</strong> {{ curso.codigo }}</p>
+        <p><strong>Programa de Formación:</strong> {{ curso.programa }}</p>
+        <p><strong>Instructor Coordinador:</strong> {{ curso.instructor_coordinador }}</p>
+        <p><strong>Horario:</strong> {{ curso.horario }}</p>
+        <p><strong>Aula:</strong> {{ curso.aula }}</p>
+        <p><strong>Fecha de Inicio:</strong> {{ curso.fecha_inicio|date:"d/m/Y" }}</p>
+        <p><strong>Fecha de Finalización:</strong> {{ curso.fecha_fin|date:"d/m/Y" }}</p>
+        <p><strong>Estado:</strong> {{ curso.estado }}</p>
+        <p><strong>Cupos Máximos:</strong> {{ curso.cupos_maximos }}</p>
+        <p><strong>Cupos Disponibles:</strong> {{ curso.cupos_disponibles }}</p>
+        {% if curso.observaciones %}
+            <p><strong>Observaciones:</strong> {{ curso.observaciones }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<h2>Aprendices Registrados</h2>
+{% if aprendices_curso %}
+<ul>
+    {% for enlace in aprendices_curso %}
+    <li>
+        <a href="{% url 'aprendices:detalle_aprendiz' enlace.aprendiz.id %}">{{ enlace.aprendiz.nombre_completo }}</a> (Estado: {{ enlace.get_estado_display }})
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No hay aprendices inscritos en este curso.</p>
+{% endif %}
+
+<h2>Instructores del Curso</h2>
+{% if instructores_curso %}
+<ul>
+    {% for enlace in instructores_curso %}
+    <li>
+        <a href="{% url 'instructores:detalle_instructor' enlace.instructor.id %}">{{ enlace.instructor }}</a> (Rol: {{ enlace.rol }})
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No hay instructores asignados a este curso.</p>
+{% endif %}
+{% endblock %}

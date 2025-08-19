@@ -1,21 +1,38 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block title %}Lista de Aprendices SENA - SENA APP{% endblock %}
 
 {% block content %}
-    <h1>Lista de Aprendices</h1>
-    <ul class="member-list">
-        {% for aprendiz in aprendices %}
-        <li>
-            <div class="col name">{{ aprendiz.nombre }} {{ aprendiz.apellido }}</div>
-            <div class="col email">{{ aprendiz.correo }}</div>
-            <div class="col phone">{{ aprendiz.telefono }}</div>
-            <div class="col birth">{{ aprendiz.Fecha_nacimiento }}</div>
-            <div class="col">{{ aprendiz.ciudad }}</div>
-            <div class="col">{{ aprendiz.programa }}</div>
+    <h1>Lista de Aprendices SENA</h1>
+    <div class="section-header">
+        <span>Total: {{ total_aprendices }} Aprendiz</span>
+        {# CAMBIO CLAVE: El botón ahora apunta a tu formulario web personalizado #}
+        <a href="{% url 'aprendices:agregar_aprendiz' %}" class="btn">Nuevo Aprendiz</a>
+    </div>
 
-            <a href="{% url 'admin:aprendices_aprendiz_change' aprendiz.pk %}" class="btn btn-sm btn-outline-primary">
-                Editar
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
+    {% if aprendices %} {# Usamos 'aprendices' como nombre de la variable de contexto #}
+        <ul class="member-list">
+            {% for aprendiz in aprendices %}
+            <li>
+                <div class="col document">
+                    <strong><a href="{% url 'aprendices:detalle_aprendiz' aprendiz.id %}">{{ aprendiz.documento_identidad }}</a></strong>
+                </div>
+                <div class="col name">{{ aprendiz.nombre_completo }}</div>
+                <div class="col email">{{ aprendiz.correo }}</div>
+                <div class="col phone">{{ aprendiz.telefono }}</div>
+                <div class="col birth">{{ aprendiz.fecha_nacimiento|date:"d/m/Y" }}</div>
+                <div class="col">{{ aprendiz.ciudad }}</div>
+                <div class="col">{{ aprendiz.programa }}</div>
+                <a href="{% url 'admin:aprendices_aprendiz_change' aprendiz.pk %}" class="btn btn-sm btn-outline-primary">
+                    Editar
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h4>No hay aprendices registrados</h4>
+        <p>Aún no se han registrado aprendices en el sistema.</p>
+        {# También cambiamos este botón para que apunte al formulario web #}
+        <a href="{% url 'aprendices:agregar_aprendiz' %}" class="btn">Registrar Primer Aprendiz</a>
+    {% endif %}
 {% endblock %}

@@ -294,7 +294,162 @@ tbody tr:hover {
     color: var(--sena-light-gray);
 }
 
+.form-container {
+    max-width: 700px; /* Ancho máximo para el formulario */
+    margin: 30px auto; /* Centrar el formulario y añadir espacio vertical */
+    padding: 30px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
 
+/* Títulos del formulario */
+.form-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 2.2em;
+}
+
+/* Grupo de campos (para organizar en filas o columnas) */
+.form-field-group {
+    display: flex; /* Usar flexbox para alinear campos en la misma fila */
+    flex-wrap: wrap; /* Permitir que los campos se envuelvan en pantallas pequeñas */
+    gap: 20px; /* Espacio entre los campos */
+    margin-bottom: 20px;
+}
+
+/* Estilo individual para cada campo */
+.form-field {
+    flex: 1; /* Los campos intentarán ocupar el mismo espacio */
+    min-width: 280px; /* Ancho mínimo para que los campos no se hagan demasiado pequeños */
+    display: flex;
+    flex-direction: column; /* Organizar label y input en columna */
+}
+
+.form-field.full-width {
+    flex-basis: 100%; /* Ocupar todo el ancho disponible */
+}
+
+/* Estilos para las etiquetas (labels) */
+.form-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.95em;
+}
+
+/* Estilos para los inputs (cajas de texto, email, number, date) */
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="number"],
+.form-field input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Bordes redondeados para los inputs */
+    font-size: 1em;
+    box-sizing: border-box; /* Incluir padding y borde en el ancho total */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-field input[type="text"]:focus,
+.form-field input[type="email"]:focus,
+.form-field input[type="number"]:focus,
+.form-field input[type="date"]:focus {
+    border-color: #4CAF50; /* Color de borde al enfocar */
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); /* Sombra al enfocar */
+    outline: none; /* Eliminar el outline por defecto del navegador */
+}
+
+/* Estilos para el texto de información */
+.form-info-text {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.required-star {
+    color: #d9534f; /* Color rojo para el asterisco obligatorio */
+    font-weight: bold;
+}
+
+/* Estilos para los mensajes de error */
+.errorlist {
+    color: #d9534f; /* Rojo para los errores */
+    font-size: 0.85em;
+    margin-top: 5px;
+    padding-left: 0;
+    list-style: none; /* Quitar viñetas de la lista */
+}
+.errorlist li {
+    margin-bottom: 3px;
+}
+
+/* Contenedor de botones de acción */
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinear botones a la derecha */
+    gap: 15px; /* Espacio entre los botones */
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee; /* Línea separadora */
+}
+
+/* Estilos para los botones (reutilizando tu clase 'btn' y añadiendo variantes) */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px; /* Bordes redondeados para los botones */
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none; /* Para enlaces con estilo de botón */
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.primary-btn {
+    background-color: #4CAF50; /* Color principal (verde) */
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px); /* Efecto ligero al pasar el mouse */
+}
+
+.secondary-btn {
+    background-color: #6c757d; /* Color secundario (gris) */
+    color: white;
+}
+
+.secondary-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Estilos responsivos básicos */
+@media (max-width: 600px) {
+    .form-field-group {
+        flex-direction: column; /* Apilar campos en columnas en móviles */
+        gap: 15px;
+    }
+    .form-field {
+        min-width: auto; /* Desactivar min-width en móviles */
+    }
+    .form-actions {
+        flex-direction: column; /* Apilar botones en móviles */
+        gap: 10px;
+    }
+    .btn {
+        width: 100%; /* Botones ocupan todo el ancho en móviles */
+    }
+}
 
     </style>
 </head>
@@ -305,6 +460,7 @@ tbody tr:hover {
             <nav>
                 <a href="{% url 'aprendices:inicio' %}">Inicio</a>
                 <a href="{% url 'aprendices:lista_aprendices' %}">Aprendices</a>
+                <a href="{% url 'aprendices:lista_cursos' %}">Cursos</a>
                 <a href="{% url 'instructores:lista_instructores' %}">Instructores</a>
                 <a href="{% url 'programas:lista_programas' %}">Programas</a>
             </nav>
